@@ -1,3 +1,8 @@
+build
+#ide
+.idea
+
+
 # Binaries for programs and plugins
 *.exe
 *.exe~
