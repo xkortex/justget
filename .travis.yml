@@ -5,9 +5,9 @@ stages:
   - test
 
 go:
-  - 1.12.x
   - 1.13.x
   - 1.14.x
+  - 1.15.x
   - tip
 
 matrix:
@@ -20,7 +20,6 @@ matrix:
 
 script:
   - go build -o $GOPATH/bin/justget
-  - $GOPATH/bin/justget --help
   - go test -race -v $(go list ./... )
   - go vet ./...
   - ./tests/get.sh

@@ -91,7 +91,7 @@ func get(urlStr string, c chan string, cfg *Config) {
 		log.Fatal(err)
 	}
 	if len(urlp.Scheme) == 0 {
-		log.Fatal("Unable to infer a correct URL: %s", urlp.String())
+		log.Fatalf("Unable to infer a correct URL: %s", urlp.String())
 	}
 	if cfg.verbose {
 		fmt.Fprintf(os.Stderr, "get: %+v\n", urlp.String())

@@ -6,7 +6,8 @@ errcho() {
 
 
 for url in 'http://api.ipify.org' 'http://google.com' 'google.com' 'google.com:80'; do
-    out=$(justget "$url")
+  # api.ipify.org can be reeeally slow at times, long tail
+    out=$(justget --timeout=10s "$url")
     if [[ $? -ne 0 ]]; then
       FAILED=1
       errcho "Failed url test: ${url}"
