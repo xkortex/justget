@@ -1,0 +1,26 @@
+language: go
+
+stages:
+  - diff
+  - test
+
+go:
+  - 1.13.x
+  - 1.14.x
+  - 1.15.x
+  - tip
+
+matrix:
+  allow_failures:
+    - go: tip
+  include:
+    - stage: diff
+      go: 1.12.x
+      script: diff -u <(echo -n) <(gofmt -d -s .)
+
+script:
+  - go build -o $GOPATH/bin/justget
+  - go test -race -v $(go list ./... )
+  - go vet ./...
+  - ./tests/get.sh
+
